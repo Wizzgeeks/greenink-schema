@@ -1,0 +1,12 @@
+__pycache__/
+venv/
+*.env
+env/
+*.env.development
+*.env.production
+*.env.new
+*.env.prod
+*.env
+.env
+.vscode/
+requirements.txt
