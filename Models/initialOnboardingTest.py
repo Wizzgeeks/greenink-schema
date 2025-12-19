@@ -30,6 +30,7 @@ class InitialOnboardingTest(Document):
             "id": str(self.id),
             "name": self.name,
             # "pass_percentage": self.pass_percentage,
+            "questions_count": len(self.content) if self.content else 0,
             "duration": self.duration,
             "default": self.default,
             "test_type": self.test_type,

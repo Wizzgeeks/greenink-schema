@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from Models.materials_folders import MaterialsFolders
 
 
-class Materials(Document):
+class InstitutionMaterials(Document):
     materials_folders=ReferenceField(MaterialsFolders,required=True,reverse_delete_rule=CASCADE)
     name =StringField(required=True)
     content =StringField(required=True)
@@ -16,7 +16,7 @@ class Materials(Document):
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
-        return super(Materials, self).save(*args, **kwargs)
+        return super(InstitutionMaterials, self).save(*args, **kwargs)
     def to_json(self):
         return {
             "id": str(self.id),
@@ -28,6 +28,7 @@ class Materials(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
+    
     def to_minimal_json(self):
         return {
             "id": str(self.id),

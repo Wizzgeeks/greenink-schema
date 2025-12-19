@@ -13,6 +13,8 @@ class Users(Document):
     email=StringField(unique=True,sparse=True)
     register_no=StringField(unique=True,sparse=True)
     password=StringField(required=True)
+    test_page_preference=StringField(choices=['easy','medium',"hard"],default='easy')
+    ai_teaching_preference=StringField(choices=['easy','medium',"hard"],default='easy')
     auth_token=StringField()
     preference=ListField(DictField())
     grade=StringField()
@@ -45,6 +47,7 @@ class Users(Document):
             "grade":self.grade if self.grade else "",
 
 
+
         }
     def to_user(self):
         return {
@@ -57,7 +60,10 @@ class Users(Document):
             "email": self.email if self.email else "",
             "register_no": self.register_no if self.register_no else "",
             "grade":self.grade if self.grade else "",   
-            "preference":self.preference if self.preference else [],           
+            "preference":self.preference if self.preference else [],  
+            "test_page_preference":self.test_page_preference if self.test_page_preference else "easy",
+            "ai_teaching_preference":self.ai_teaching_preference if self.ai_teaching_preference else "easy",
+                     
         }
     def to_admin(self):
         return {
