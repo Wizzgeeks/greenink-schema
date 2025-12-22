@@ -26,9 +26,9 @@ class Subtopic(Document):
     def to_json(self):
         return {
             "id": str(self.id),
-            "course": self.course.to_json() if self.course else None,
-            "subject": self.subject.to_json() if self.subject else None,
-            "topic": self.topic.to_json() if self.topic else None,
+            # "course": self.course.to_json() if self.course else None,
+            # "subject": self.subject.to_json() if self.subject else None,
+            # "topic": self.topic.to_json() if self.topic else None,
             "name": self.name,
             "key": self.key,
             "sequence": self.sequence,

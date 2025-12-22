@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="greenink-schema",
-    version="1.0.1",
+    version="1.2.6",
     description="Schema for Flask Admin and User backends",
     author="wizzgeeks",
     author_email="",

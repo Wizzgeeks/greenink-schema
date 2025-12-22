@@ -35,8 +35,8 @@ class CoursePageContent(Document):
     def to_json(self):
         return {
             "id": str(self.id),
-            "course": self.course.to_json() if self.course else None,
-            "question_bank": self.question_bank.to_json() if self.question_bank else None,
+            # "course": self.course.to_json() if self.course else None,
+            # "question_bank": self.question_bank.to_json() if self.question_bank else None,
             "sequence": self.sequence,
             "name": self.name,
             "page_type": self.page_type,

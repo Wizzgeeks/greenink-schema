@@ -6,11 +6,11 @@ from datetime import datetime, timezone
 class InstitutionCourse(Document):
     institution = ReferenceField(Institution, required=True)
     course =ListField(ReferenceField(Course,reverse_delete_rule=NULLIFY))
+    created_by=StringField()
+    updated_by = StringField()
     created_at = DateTimeField(default=datetime.now(timezone.utc))
     updated_at = DateTimeField(default=datetime.now(timezone.utc))
     is_active = BooleanField(default=True)
-    created_by=StringField()
-    updated_by=StringField()
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
         return super(InstitutionCourse, self).save(*args, **kwargs)

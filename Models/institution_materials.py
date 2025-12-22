@@ -1,10 +1,10 @@
 from mongoengine import CASCADE, Document, StringField, ListField, ReferenceField, DateTimeField,DictField,BooleanField  
 from datetime import datetime, timezone
-from Models.materials_folders import MaterialsFolders
+from Models.institution_materials_folders import InstitutionMaterialsFolders
 
 
 class InstitutionMaterials(Document):
-    materials_folders=ReferenceField(MaterialsFolders,required=True,reverse_delete_rule=CASCADE)
+    materials_folders=ReferenceField(InstitutionMaterialsFolders,required=True,reverse_delete_rule=CASCADE)
     name =StringField(required=True)
     content =StringField(required=True)
     publish=BooleanField(default=False)
