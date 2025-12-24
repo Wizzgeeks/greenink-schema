@@ -14,6 +14,7 @@ class QuestionBankFolders(Document):
     topic=ReferenceField(Topic,reverse_delete_rule=CASCADE)
     subtopic=ReferenceField(Subtopic,reverse_delete_rule=CASCADE)
     name=StringField(required=True)
+    type=StringField(choices=['easy','medium','hard'])
     created_by=StringField()
     updated_by = StringField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
@@ -31,7 +32,7 @@ class QuestionBankFolders(Document):
             # "course":self.course.to_json() if self.course else None,
             # "subject":self.subject.to_json() if self.subject else None,
             # "topic":self.topic.to_json() if self.topic else None,
-            # "subptopic":self.subtopic.to_json() if self.subtopic else None,
+            "type":self.type() if self.type else None,
             "name":self.name,
             "created_at": self.created_at,
             "updated_at": self.updated_at,            
