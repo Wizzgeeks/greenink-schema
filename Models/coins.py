@@ -26,7 +26,10 @@ class Coin_management(Document):
             "streak_coins": self.streak_coins,
             # "total_coins": self.total_coins(),
             "created_at": self.created_at.isoformat(),
-            "updated_at": self.updated_at.isoformat()
+            "updated_at": self.updated_at.isoformat(),
+            "created_by": self.created_by,
+            "updated_by": self.updated_by,
+
     }
 
     def with_key(self):
