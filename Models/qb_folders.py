@@ -32,7 +32,7 @@ class QuestionBankFolders(Document):
             # "course":self.course.to_json() if self.course else None,
             # "subject":self.subject.to_json() if self.subject else None,
             # "topic":self.topic.to_json() if self.topic else None,
-            "type":self.type() if self.type else None,
+            "type":self.type if self.type else None,
             "name":self.name,
             "created_at": self.created_at,
             "updated_at": self.updated_at,            
