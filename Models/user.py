@@ -24,6 +24,8 @@ class Users(Document):
     updated_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     created_by=StringField()
     updated_by=StringField()
+    login_dates = ListField(StringField())
+
     
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
