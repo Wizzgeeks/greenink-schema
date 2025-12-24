@@ -5,7 +5,7 @@ from Models.question_bank import QuestionBank
 
 
 class LevelListFeild(EmbeddedDocument):
-    material=ReferenceField(QuestionBank,reverse_delete_rule=NULLIFY)
+    material=ReferenceField(QuestionBank)
     mark=IntField()
     feedback=StringField()
     def to_json(self):
