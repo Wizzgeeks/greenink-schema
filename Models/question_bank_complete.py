@@ -1,7 +1,7 @@
 from mongoengine import CASCADE, NULLIFY, Document,StringField,BooleanField,EnumField,ReferenceField,ListField,DictField,EmbeddedDocument,DateTimeField,IntField,EmbeddedDocumentField
 from datetime import datetime,timezone
-from user import Users
-from question_bank import QuestionBank
+from Models.user import Users
+from Models.question_bank import QuestionBank
 
 
 class LevelListFeild(EmbeddedDocument):
