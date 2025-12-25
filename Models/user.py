@@ -25,6 +25,8 @@ class Users(Document):
     created_by=StringField()
     updated_by=StringField()
     login_dates = ListField(StringField())
+    streak_count = IntField(default=0)
+
 
     
     def save(self, *args, **kwargs):
