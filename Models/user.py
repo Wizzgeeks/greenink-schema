@@ -26,6 +26,7 @@ class Users(Document):
     updated_by=StringField()
     login_dates = ListField(StringField())
     streak_count = IntField(default=0)
+    total_coins = IntField(default=0)
 
 
     
