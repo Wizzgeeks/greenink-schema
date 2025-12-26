@@ -27,6 +27,7 @@ class Users(Document):
     login_dates = ListField(StringField())
     streak_count = IntField(default=0)
     total_coins = IntField(default=0)
+    total_xp =  IntField(default =0)
 
 
     
