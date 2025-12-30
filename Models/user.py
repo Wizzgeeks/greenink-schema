@@ -28,6 +28,9 @@ class Users(Document):
     streak_count = IntField(default=0)
     total_coins = IntField(default=0)
     total_xp =  IntField(default =0)
+    badge_name = StringField(default="First Step")
+    level = IntField(default=1)   
+
 
 
     
