@@ -11,7 +11,7 @@ class SubjectPageContent(Document):
     question_bank=ReferenceField(QuestionBank)
 
     name=StringField(required=True)
-    page_type=StringField(choices=['content','quiz','question_bank','test','mcq','match','fillups','content','expand','update','trueorfalse','analysis','active_recall','active_recall_content','active_recall_test'], required=True)
+    page_type=StringField(choices=['content','quiz','question_bank','test','mcq','match','fillups','content','expand','update','trueorfalse','analysis','active_recall','active_recall_content','active_recall_test','adaptive_learning_test','adaptive_learning_content'], required=True)
     content=ListField(DictField(),default=[])
     medium_content=ListField(DictField())
     hard_content=ListField(DictField())
