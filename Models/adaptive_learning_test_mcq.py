@@ -25,6 +25,7 @@ class AdaptiveLearningTestMcq(Document):
     user = ReferenceField(Users, required=True, reverse_delete_rule=CASCADE)
 
     mcq = ListField(DictField(), default=[])
+    content = StringField()  
 
     is_deleted = BooleanField(default=False)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
@@ -49,6 +50,7 @@ class AdaptiveLearningTestMcq(Document):
             "subtopic_page": str(self.subtopic_page.id) if self.subtopic_page else None,
             "user": str(self.user.id) if self.user else None,
             "mcq": self.mcq,
+            "content": self.content,
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
