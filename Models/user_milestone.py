@@ -7,23 +7,14 @@ from Models.topic import Topic
 from Models.subtopic import Subtopic
 
 
-class SubtopicMilestoneListField(EmbeddedDocument):
+class TopicMilestoneListField(EmbeddedDocument):
+    topic = ReferenceField(Topic)
     subtopics = ListField(ReferenceField(Subtopic))
 
     def to_json(self):
         return {
-            "subtopics": [str(s.id) for s in self.subtopics]
-        }
-
-
-class TopicMilestoneListField(EmbeddedDocument):
-    topic = ReferenceField(Topic)
-    subtopics = EmbeddedDocumentField(SubtopicMilestoneListField)
-
-    def to_json(self):
-        return {
             "topic": str(self.topic.id) if self.topic else None,
-            "subtopics": self.subtopics.to_json() if self.subtopics else []
+            "subtopics": [str(s.id) for s in self.subtopics]
         }
 
 
