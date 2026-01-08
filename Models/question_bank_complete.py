@@ -10,7 +10,7 @@ class LevelListFeild(EmbeddedDocument):
     feedback=StringField()
     def to_json(self):
         return {
-            "material":str(self.material) if self.material else None,
+            "material":str(self.material.id) if self.material else None,
             "mark":self.mark,
             "feedback":self.feedback
         }
@@ -32,7 +32,7 @@ class QuestionBankComplete(Document):
     def to_json(self):
         return{
             "id": str(self.id),
-            "user":str(self.user) if self.user else None,
+            "user":str(self.user.id) if self.user else None,
             "easy_type": [p.to_json() for p in self.easy_type],
             "medium_type": [p.to_json() for p in self.medium_type],
             "hard_type": [p.to_json() for p in self.hard_type],
