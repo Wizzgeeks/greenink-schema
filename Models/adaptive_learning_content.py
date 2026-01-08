@@ -54,8 +54,6 @@ class AdaptiveLearningContent(Document):
             "subtopic_page": str(self.subtopic_page.id) if self.subtopic_page else None,
 
             "user": str(self.user.id) if self.user else None,
-            "adaptive_mcq": str(self.adaptive_mcq.id) if self.adaptive_mcq else None,
-
             "content": self.content,
 
             "created_at": self.created_at,
