@@ -31,7 +31,6 @@ class AdaptiveLearningContent(Document):
         reverse_delete_rule=CASCADE,
         null=True
     )
-    performance_insight = StringField()     
     content = StringField()           
     is_deleted = BooleanField(default=False)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
@@ -57,9 +56,7 @@ class AdaptiveLearningContent(Document):
             "user": str(self.user.id) if self.user else None,
             "adaptive_mcq": str(self.adaptive_mcq.id) if self.adaptive_mcq else None,
 
-            "performance_insight": self.performance_insight,
             "content": self.content,
-            "final_message": self.final_message,
 
             "created_at": self.created_at,
             "updated_at": self.updated_at,
