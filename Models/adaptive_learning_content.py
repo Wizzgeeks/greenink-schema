@@ -13,7 +13,7 @@ from Models.subject_page_content import SubjectPageContent
 from Models.topic_page_content import TopicPageContent
 from Models.subtopic_page_content import SubtopicPageContent
 from Models.user import Users
-from Models.adaptive_page_mcq import AdaptiveLearningTestMcq
+from Models.adaptive_learning_test_mcq import AdaptiveLearningTestMcq
 
 
 class AdaptiveLearningContent(Document):
