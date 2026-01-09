@@ -25,7 +25,7 @@ class AdaptiveLearningTestMcq(Document):
     user = ReferenceField(Users, required=True, reverse_delete_rule=CASCADE)
 
     mcq = ListField(DictField(), default=[])
-    content = StringField()  
+    content = ListField(DictField(), default=[])
 
     is_deleted = BooleanField(default=False)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
