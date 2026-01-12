@@ -1,4 +1,4 @@
-from mongoengine import Document, ReferenceField, DateTimeField, StringField, BooleanField, CASCADE,IntField
+from mongoengine import Document, ReferenceField, DateTimeField, StringField, BooleanField, CASCADE,IntField,ListField,DictField
 from datetime import datetime, timezone
 from Models.subject import Subject
 from Models.user import Users
@@ -12,6 +12,7 @@ class SubjectCompleted(Document):
     total_page_count=IntField(default=0)
     completed_page_count=IntField(default=0)
     total_topic_count=IntField(default=0)
+    time_spent=ListField(DictField(),default=[])
     completed_topic_count=IntField(default=0)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
