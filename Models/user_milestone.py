@@ -13,8 +13,8 @@ class TopicMilestoneListField(EmbeddedDocument):
 
     def to_json(self):
         return {
-            "topic": str(self.topic.id) if self.topic else None,
-            "subtopics": [str(s.id) for s in self.subtopics]
+            "topic": str(self.topic) if self.topic else None,
+            "subtopics": [str(s) for s in self.subtopics]
         }
 
 
@@ -24,7 +24,7 @@ class SubjectMilestoneListField(EmbeddedDocument):
 
     def to_json(self):
         return {
-            "subject": str(self.subject.id) if self.subject else None,
+            "subject": str(self.subject) if self.subject else None,
             "topics": [t.to_json() for t in self.topics]
         }
 
