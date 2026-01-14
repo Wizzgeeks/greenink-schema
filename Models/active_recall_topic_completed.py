@@ -3,12 +3,12 @@ from Models.subject import Subject
 from Models.topic import Topic
 from mongoengine import Document, ReferenceField, DateTimeField, StringField, BooleanField, CASCADE,ListField,DictField,IntField
 from datetime import datetime, timezone
-
+from Models.user import Users
 class ActiveRecallTopicCompleted(Document):
     course = ReferenceField(Course, reverse_delete_rule=CASCADE, required=True)
     subject = ReferenceField(Subject, reverse_delete_rule=CASCADE, required=True)
     topic = ReferenceField(Topic, reverse_delete_rule=CASCADE, required=True)
-    user = ReferenceField(StringField(), reverse_delete_rule=CASCADE, required=True)
+    user = ReferenceField(Users, reverse_delete_rule=CASCADE, required=True)
     #test result fields
     attempt_data=ListField(DictField(),default=[])
     completed=BooleanField()
