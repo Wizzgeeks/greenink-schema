@@ -10,6 +10,7 @@ class ActiveRecallTopicCompleted(Document):
     subject = ReferenceField(Subject, reverse_delete_rule=CASCADE, required=True)
     topic = ReferenceField(Topic, reverse_delete_rule=CASCADE, required=True)
     user = ReferenceField(Users, reverse_delete_rule=CASCADE, required=True)
+    topic_page_content = ReferenceField(TopicPageContent, reverse_delete_rule=CASCADE, required=True)
     #test result fields
     attempt_data=ListField(DictField(),default=[])
     completed=BooleanField()
