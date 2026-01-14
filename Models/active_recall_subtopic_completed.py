@@ -3,6 +3,7 @@ from Models.subject import Subject
 from Models.topic import Topic
 from Models.subtopic import Subtopic
 from Models.user import Users
+from Models.subtopic_page_content import SubtopicPageContent
 from mongoengine import Document, ReferenceField, DateTimeField, StringField, BooleanField,CASCADE,ListField,DictField,IntField
 from datetime import datetime, timezone
 
@@ -12,6 +13,7 @@ class ActiveRecallSubtopicCompleted(Document):
     topic = ReferenceField(Topic, reverse_delete_rule=CASCADE, required=True)
     subtopic = ReferenceField(Subtopic, reverse_delete_rule=CASCADE, required=True)
     user = ReferenceField(Users, reverse_delete_rule=CASCADE, required=True)
+    subtopic_page_content = ReferenceField(SubtopicPageContent, reverse_delete_rule=CASCADE, required=True)
     #test result fields
     attempt_data=ListField(DictField(),default=[])
     completed=BooleanField()
