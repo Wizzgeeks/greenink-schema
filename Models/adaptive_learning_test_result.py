@@ -18,23 +18,25 @@ class AdaptiveLearningTestResult(Document):
     topic = ReferenceField(Topic, reverse_delete_rule=CASCADE)
     subtopic = ReferenceField(Subtopic, reverse_delete_rule=CASCADE)
 
-    course_page = ReferenceField(CoursePageContent, reverse_delete_rule=CASCADE)
-    subject_page = ReferenceField(SubjectPageContent, reverse_delete_rule=CASCADE)
-    topic_page = ReferenceField(TopicPageContent, reverse_delete_rule=CASCADE)
-    subtopic_page = ReferenceField(SubtopicPageContent, reverse_delete_rule=CASCADE)
+    course_page = ReferenceField(CoursePageContent)
+    subject_page = ReferenceField(SubjectPageContent)
+    topic_page = ReferenceField(TopicPageContent)
+    subtopic_page = ReferenceField(SubtopicPageContent)
 
-    user = ReferenceField(Users, required=True, reverse_delete_rule=CASCADE)
+    user = ReferenceField(Users, required=True)
+    recall_page = ReferenceField(AdaptiveLearningTestMcq)
 
-    recall_page = ReferenceField(AdaptiveLearningTestMcq, reverse_delete_rule=CASCADE)
-
-    mcq_result = ListField(DictField(), default=[])
-    marks = IntField()
+    attempt_data = ListField(DictField(), default=[])
     completed = BooleanField(default=False)
+
+    no_of_questions_attempted = IntField()
+    no_of_question_correct = IntField()
+    total_questions = IntField()
+
+    marks = IntField()
 
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
-    created_by = StringField()
-    updated_by = StringField()
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
