@@ -21,8 +21,13 @@ class AdaptiveLearningTestMcq(Document):
     subject_page = ReferenceField(SubjectPageContent, reverse_delete_rule=CASCADE)
     topic_page = ReferenceField(TopicPageContent, reverse_delete_rule=CASCADE)
     subtopic_page = ReferenceField(SubtopicPageContent, reverse_delete_rule=CASCADE)
+    page_type = StringField(choices=["course", "subject", "topic", "subtopic"])
 
     user = ReferenceField(Users, required=True, reverse_delete_rule=CASCADE)
+    adaptive_status = StringField(
+    choices=["pending", "processing", "ready", "failed"],
+    default="pending"
+)
 
     mcq = ListField(DictField(), default=[])
     content = ListField(DictField(), default=[])
@@ -54,4 +59,6 @@ class AdaptiveLearningTestMcq(Document):
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "adaptive_status": self.adaptive_status,
+            "page_type": self.page_type,
         }
