@@ -7,6 +7,21 @@ from Models.topic import Topic
 from Models.subtopic import Subtopic
 
 
+class TrackedMilestoneItem(EmbeddedDocument):
+    milestone_type = StringField(choices=['one_day', 'one_week', 'one_month'], required=True)
+
+    course = StringField(required=True)
+    subject = StringField()
+    topic = StringField()
+    subtopic = StringField()
+
+    start_date = DateTimeField(default=lambda: datetime.now(timezone.utc))
+    end_date = DateTimeField(required=True)
+
+    status = StringField(choices=['active', 'expired', 'completed'], default='active')
+    notified = BooleanField(default=False)
+
+
 class TopicMilestoneListField(EmbeddedDocument):
     topic = StringField(required=True)
     subtopics = ListField(StringField())
@@ -36,6 +51,7 @@ class UserMilestone(Document):
     one_month = ListField(EmbeddedDocumentField(SubjectMilestoneListField))
     one_week = ListField(EmbeddedDocumentField(SubjectMilestoneListField))
     one_day = ListField(EmbeddedDocumentField(SubjectMilestoneListField))
+    tracked_items = ListField(EmbeddedDocumentField(TrackedMilestoneItem)) 
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
@@ -51,6 +67,7 @@ class UserMilestone(Document):
             "one_month": [s.to_json() for s in self.one_month],
             "one_week": [s.to_json() for s in self.one_week],
             "one_day": [s.to_json() for s in self.one_day],
+            "tracked_items":self.tracked_items,
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
