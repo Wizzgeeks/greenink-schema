@@ -12,6 +12,7 @@ class GamesCompleted(Document):
     score = IntField(required=True)
     completed=BooleanField(default=False)
     attempt_data=ListField(DictField(),default=[])
+    game_type = StringField(choices=["knowledge_test", "speed_test"], required=True)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
@@ -27,6 +28,17 @@ class GamesCompleted(Document):
             "score": self.score,
             "completed": self.completed,
             "attempt_data": self.attempt_data,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+        }
+    def to_mini_json(self):
+        return {
+            "id": str(self.id),
+            "user": str(self.user.id) if self.user else None,
+            "game": str(self.game.id) if self.game else None,
+            "score": self.score,
+            "completed": self.completed,
+            "game_type": self.game_type,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
