@@ -28,6 +28,11 @@ class CoursePageContent(Document):
     critical_thinking=IntField(default=0)
     application=IntField(default=0)
 
+    tts_s3_url = StringField()
+    tts_mime = StringField(default="audio/wav")
+    tts_generated = BooleanField(default=False)
+    tts_generated_at = DateTimeField()
+
     is_deleted=BooleanField(default=False)
     created_by=StringField()
     updated_by=StringField()
@@ -53,7 +58,9 @@ class CoursePageContent(Document):
             "direct":self.direct if self.direct else 0, 
             "reasoning":self.reasoning if self.reasoning else 0,
             "critical_thinking":self.critical_thinking if self.critical_thinking else 0,
-            "application":self.application if self.application else 0
+            "application":self.application if self.application else 0,
+            "tts_s3_url": self.tts_s3_url,
+            "tts_mime": self.tts_mime,
         }
     def to_json_medium(self):
         return {
