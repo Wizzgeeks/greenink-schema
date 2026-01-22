@@ -3,8 +3,10 @@ from mongoengine import (
     CASCADE, ListField, DictField
 )
 from datetime import datetime, timezone
+from Models.course import Course
 
 class Game(Document):
+    course= ReferenceField(Course, reverse_delete_rule=CASCADE, required=True)
     name = StringField(required=True)
     content = ListField(DictField(), default=[])
     game_type = StringField(choices=["knowledge_test", "speed_test"], required=True)
@@ -17,6 +19,7 @@ class Game(Document):
     def to_json(self):
         return {
             "id": str(self.id),
+            "course": str(self.course.id) if self.course else None,
             "name": self.name,
             "content": self.content,
             "game_type": self.game_type,
