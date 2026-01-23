@@ -12,7 +12,7 @@ class GamesCompleted(Document):
     score = IntField(required=True)
     completed=BooleanField(default=False)
     attempt_data=ListField(DictField(),default=[])
-    game_type = StringField(choices=["knowledge_test", "speed_test"], required=True)
+    game_type = StringField(    choices=["knowledge_test", "speed_test", "aptitude_test"], required=True)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
