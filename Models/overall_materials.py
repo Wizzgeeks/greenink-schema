@@ -4,8 +4,8 @@ from course import Course
 
 class OverallMaterials(Document):
     course=ReferenceField(Course,required=True,reverse_delete_rule=CASCADE)
-    name =StringField(required=True)
-    content =StringField(required=True)
+    name=StringField(required=True)
+    content=StringField(required=True)
     publish=BooleanField(default=False)
     materials_type = StringField(choices=["pdf", "videos", "image", "ppt", "audio"],required=True)
     created_by=StringField()
