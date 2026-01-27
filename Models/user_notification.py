@@ -7,7 +7,7 @@ class Notification(EmbeddedDocument):
     notification_id = StringField(default=lambda: str(uuid.uuid4()))
     message = StringField(default="You have a new notification")
     notification_type = StringField(
-        choices=("homework", "reminder", "general"),
+        choices=("homework", "reminder", "general","test"),
         default="general"
     )
     mark_as_read = BooleanField(default=False)
