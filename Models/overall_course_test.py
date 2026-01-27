@@ -2,7 +2,7 @@ from mongoengine import Document, ReferenceField, DateTimeField,ListField,DictFi
 from datetime import datetime, timezone
 from Models.course import Course
 
-class CourseTest(Document):
+class OverallCourseTest(Document):
     course=ReferenceField(Course,required=True,reverse_delete_rule=CASCADE)
     name=StringField()
     content=ListField(DictField(),default=[])
@@ -12,7 +12,7 @@ class CourseTest(Document):
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
-        return super(CourseTest, self).save(*args, **kwargs)
+        return super(OverallCourseTest, self).save(*args, **kwargs)
 
     def to_json(self):
         return {
