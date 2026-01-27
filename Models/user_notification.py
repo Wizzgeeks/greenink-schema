@@ -3,7 +3,6 @@ from Models.user import Users
 from datetime import datetime, timezone
 import uuid
 
-
 class Notification(EmbeddedDocument):
     notification_id = StringField(default=lambda: str(uuid.uuid4()))
     message = StringField(default="You have a new notification")
