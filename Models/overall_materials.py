@@ -1,6 +1,6 @@
 from mongoengine import CASCADE, Document, StringField, ReferenceField, DateTimeField,BooleanField  
 from datetime import datetime, timezone
-from course import Course
+from Models.course import Course
 
 class OverallMaterials(Document):
     course=ReferenceField(Course,required=True,reverse_delete_rule=CASCADE)
