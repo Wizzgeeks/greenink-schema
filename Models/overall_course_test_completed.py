@@ -44,7 +44,7 @@ class OverallCourseTestCompleted(Document):
     def to_admin_list(self):
         return {
             "id": str(self.id),
-            "user": self.user if self.user else None,
+            "user": self.user.to_json() if self.user else None,
             "test":str(self.test.id) if self.test else None,
             "no_of_questions_attempted": self.no_of_questions_attempted,
             "no_of_question_correct": self.no_of_question_correct,
