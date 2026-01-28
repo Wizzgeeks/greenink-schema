@@ -21,7 +21,7 @@ class Notification(EmbeddedDocument):
             "name":self.name,
             "notification_type": self.notification_type,
             "mark_as_read": self.mark_as_read,
-            "created_at": self.created_at
+            "created_at": self.created_at.isoformat()
         }
 
 
