@@ -13,6 +13,7 @@ class Videos(Document):
     mime_type = StringField()            
     duration = IntField()              
     thumbnail_url = StringField()
+    publish = BooleanField(default=True) 
     created_by = StringField()
     updated_by = StringField()
     is_active = BooleanField(default=True)
