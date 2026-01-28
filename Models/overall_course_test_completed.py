@@ -40,3 +40,15 @@ class OverallCourseTestCompleted(Document):
             "updated_at":self.updated_at
 
         }
+    
+    def to_admin_list(self):
+        return {
+            "id": str(self.id),
+            "user": self.user if self.user else None,
+            "test":str(self.test.id) if self.test else None,
+            "no_of_questions_attempted": self.no_of_questions_attempted,
+            "no_of_question_correct": self.no_of_question_correct,
+            "created_at":self.created_at,
+            "updated_at":self.updated_at
+
+        }
