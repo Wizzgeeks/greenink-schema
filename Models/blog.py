@@ -23,6 +23,7 @@ class Blog(Document):
             "image_url":self.image_url,
             "blog_description":self.blog_description,
             'description':self.description,
+            "publish":self.publish,
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
@@ -34,6 +35,7 @@ class Blog(Document):
             "title":self.title,
             "image_url":self.image_url,
             "blog_description":self.blog_description,
+            "publish":self.publish,
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
