@@ -6,6 +6,7 @@ class Admin(Document):
     name=StringField(required=True)
     email=StringField(unique=True,sparse=True)
     # student_identification_number=StringField(unique=True,sparse=True)
+    mobile=StringField(unique=True,sparse=True)
     password=StringField(required=True)
     auth_token=StringField()
     disabled=BooleanField(default=False)
