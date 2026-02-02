@@ -1,10 +1,13 @@
 from mongoengine import Document,StringField,IntField,DateTimeField,BooleanField,ReferenceField,NULLIFY
 from datetime import datetime,timezone
 from Models.initialOnboardingTest import InitialOnboardingTest
+from Models.preference_model import PreferenceQuestion
 
 class Course(Document):
     initialOnboardingTest=ReferenceField(InitialOnboardingTest,reverse_delete_rule=NULLIFY)
     psychometricTest=ReferenceField(InitialOnboardingTest,reverse_delete_rule=NULLIFY)
+    preferenceQuestion=ReferenceField(PreferenceQuestion,reverse_delete_rule=NULLIFY)
+    
     iqTest=ReferenceField(InitialOnboardingTest,reverse_delete_rule=NULLIFY)
     name = StringField(required=True,unique=True)
     key = StringField(required=True, unique=True)

@@ -44,16 +44,16 @@ class Users(Document):
             # "institution": self.institution.to_json() if self.institution else None,
             # "course": self.course.to_json() if self.course else None,
             # "batch": self.batch.to_json() if self.batch else None,
-           "batch_name": self.batch.name if self.batch else None,
-           "batch_assigned": True if self.batch else False,
+        #    "batch_name": self.batch.name if self.batch else None,
+        #    "batch_assigned": True if self.batch else False,
             "name": self.name,
             "email": self.email if self.email else "",
-            "register_no": self.register_no if self.register_no else "",
+            # "register_no": self.register_no if self.register_no else "",
             "disabled": self.disabled if self.disabled else False,
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            "grade":self.grade if self.grade else "",
+            # "grade":self.grade if self.grade else "",
 
 
 
