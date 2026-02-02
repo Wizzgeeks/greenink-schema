@@ -6,18 +6,18 @@ from datetime import datetime, timezone
 
 
 class Users(Document):
-    institution=ReferenceField(Institution, reverse_delete_rule=CASCADE)
+    # institution=ReferenceField(Institution, reverse_delete_rule=CASCADE)
     course=ReferenceField(Course, reverse_delete_rule=CASCADE)
-    batch=ReferenceField(Batches, reverse_delete_rule=CASCADE)
+    # batch=ReferenceField(Batches, reverse_delete_rule=CASCADE)
     name=StringField(required=True)
     email=StringField(unique=True,sparse=True)
-    register_no=StringField(unique=True,sparse=True)
+    # register_no=StringField(unique=True,sparse=True)
     password=StringField(required=True)
     test_page_preference=StringField(choices=['easy','medium',"hard"],default='easy')
     ai_teaching_preference=StringField(choices=['easy','medium',"hard"],default='easy')
     auth_token=StringField()
     preference=ListField(DictField())
-    grade=StringField()
+    # grade=StringField()
     disabled=BooleanField(default=False)
     is_deleted=BooleanField(default=False)
     created_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
@@ -61,14 +61,14 @@ class Users(Document):
     def to_user(self):
         return {
             "id": str(self.id),
-            "institution_name": self.institution.name if self.institution else None,
-            "intitution_type": self.institution.type if self.institution else None,
+            # "institution_name": self.institution.name if self.institution else None,
+            # "intitution_type": self.institution.type if self.institution else None,
             "course_name": self.course.name if self.course else None,
-            "batch_name": self.batch.name if self.batch else None,
+            # "batch_name": self.batch.name if self.batch else None,
             "name": self.name,
             "email": self.email if self.email else "",
-            "register_no": self.register_no if self.register_no else "",
-            "grade":self.grade if self.grade else "",   
+            # "register_no": self.register_no if self.register_no else "",
+            # "grade":self.grade if self.grade else "",   
             "preference":self.preference if self.preference else [],  
             "test_page_preference":self.test_page_preference if self.test_page_preference else "easy",
             "ai_teaching_preference":self.ai_teaching_preference if self.ai_teaching_preference else "easy",
