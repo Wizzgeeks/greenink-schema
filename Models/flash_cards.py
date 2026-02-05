@@ -3,7 +3,7 @@ from mongoengine import CASCADE, Document, StringField, ReferenceField,DictField
 from datetime import datetime,timezone
 
 
-class FlaskCards(Document):
+class FlashCards(Document):
     user = ReferenceField(Users,reverse_delete_rule=CASCADE,required=True)
     cards_content=ListField(DictField())
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
@@ -11,6 +11,6 @@ class FlaskCards(Document):
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
-        return super(FlaskCards, self).save(*args, **kwargs)
+        return super(FlashCards, self).save(*args, **kwargs)
 
 
