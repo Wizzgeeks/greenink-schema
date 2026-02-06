@@ -5,6 +5,7 @@ from mongoengine import (
 from datetime import datetime, timezone
 from Models.course import Course
 
+
 class Game(Document):
     course= ReferenceField(Course, reverse_delete_rule=CASCADE, required=True)
     name = StringField(required=True)
@@ -12,6 +13,8 @@ class Game(Document):
     game_type = StringField(choices=["knowledge_test", "speed_test", "aptitude_test"], required=True)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
+    title=StringField()
+    key=StringField()
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
