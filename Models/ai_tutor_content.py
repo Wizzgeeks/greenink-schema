@@ -8,6 +8,8 @@ from datetime import datetime, timezone
 from Models.user import Users
 
 class AiTutorContent(Document):
+    title = StringField(required=True, choices=["course","subject","topic","subtopic"])
+    key = StringField(required=True)
     course_page_content=ReferenceField(CoursePageContent,reverse_delete_rule=CASCADE)
     subject_page_content=ReferenceField(SubjectPageContent,reverse_delete_rule=CASCADE)
     topic_page_content=ReferenceField(TopicPageContent,reverse_delete_rule=CASCADE)
