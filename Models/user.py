@@ -11,7 +11,7 @@ class Users(Document):
     # batch=ReferenceField(Batches, reverse_delete_rule=CASCADE)
     name=StringField(required=True)
     email=StringField(unique=True,sparse=True)
-    # register_no=StringField(unique=True,sparse=True)
+    register_no=StringField(unique=True,sparse=True)
     password=StringField(required=True)
     test_page_preference=StringField(choices=['easy','medium',"hard"],default='easy')
     ai_teaching_preference=StringField(choices=['easy','medium',"hard"],default='easy')
@@ -48,7 +48,7 @@ class Users(Document):
         #    "batch_assigned": True if self.batch else False,
             "name": self.name,
             "email": self.email if self.email else "",
-            # "register_no": self.register_no if self.register_no else "",
+            "register_no": self.register_no if self.register_no else "",
             "disabled": self.disabled if self.disabled else False,
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
