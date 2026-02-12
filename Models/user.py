@@ -67,7 +67,7 @@ class Users(Document):
             # "batch_name": self.batch.name if self.batch else None,
             "name": self.name,
             "email": self.email if self.email else "",
-            # "register_no": self.register_no if self.register_no else "",
+            "register_no": self.register_no if self.register_no else "",
             # "grade":self.grade if self.grade else "",   
             "preference":self.preference if self.preference else [],  
             "test_page_preference":self.test_page_preference if self.test_page_preference else "easy",
