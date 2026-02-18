@@ -29,7 +29,9 @@ class Users(Document):
     total_coins = IntField(default=0)
     total_xp =  IntField(default =0)
     badge_name = StringField(default="First Step")
-    level = IntField(default=1)   
+    level = IntField(default=1)
+    dashboard_feedback = DictField()
+    dashboard_feedback_generated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))      
 
 
 
