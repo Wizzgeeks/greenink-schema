@@ -31,7 +31,10 @@ class Users(Document):
     badge_name = StringField(default="First Step")
     level = IntField(default=1)
     dashboard_feedback = DictField()
-    dashboard_feedback_generated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))      
+    dashboard_feedback_generated_at = DateTimeField(default=lambda: datetime.now(timezone.utc)) 
+    subscription_expires_at = DateTimeField(null=True)
+    is_subscription_active = BooleanField(default=False)
+    subscription_id = StringField(null=True)
 
 
 
@@ -86,6 +89,9 @@ class Users(Document):
             "email": self.email if self.email else "",
             "register_no": self.register_no if self.register_no else "",
             "disabled": self.disabled if self.disabled else False,
+            "subscription_expires_at": self.subscription_expires_at,
+            "is_subscription_active": self.is_subscription_active,
+            "subscription_id": self.subscription_id,
             # "is_deleted": self.is_deleted,
             # "created_at": self.created_at,
             # "updated_at": self.updated_at,
