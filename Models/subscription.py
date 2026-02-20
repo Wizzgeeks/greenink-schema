@@ -1,5 +1,6 @@
-from mongoengine import Document,StringField,ReferenceField,BooleanField,ListField,FloatField,DictField,CASCADE
+from mongoengine import Document,StringField,ReferenceField,BooleanField,DateTimeField,FloatField,DictField,CASCADE
 from Models.course import Course
+from datetime import datetime, timezone
 
 class Subscription(Document):
     course = ReferenceField(Course,reverse_delete_rule=CASCADE,required=True)
@@ -7,6 +8,8 @@ class Subscription(Document):
     price = FloatField(required=True)
     package_name = StringField(required=True)
     plan_active = BooleanField(default=True)
+    created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
+    updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
     def to_json(self):
         return {
