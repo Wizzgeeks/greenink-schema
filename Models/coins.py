@@ -9,7 +9,7 @@ class Coin_management(Document):
     quiz_completion_coins = IntField(required=True)
     login_coins = IntField(required=True)
     streak_coins = IntField(required=True)
-    coin_value_per_unit = FloatField(required=True, min_value=0.0)
+    coin_value_per_unit = FloatField(required=True,precision=2, min_value=0.0)
     created_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     created_by=StringField()
