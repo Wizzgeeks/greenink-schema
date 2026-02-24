@@ -17,10 +17,21 @@ class TrackedMilestoneItem(EmbeddedDocument):
 
     start_date = DateTimeField(default=lambda: datetime.now(timezone.utc))
     end_date = DateTimeField(required=True)
-
     status = StringField(choices=['active', 'expired', 'completed'], default='active')
     notified = BooleanField(default=False)
 
+    def to_json(self):
+        return {
+            "milestone_type": self.milestone_type,
+            "course": self.course,
+            "subject": self.subject,
+            "topic": self.topic,
+            "subtopic": self.subtopic,
+            "start_date": self.start_date.isoformat() if self.start_date else None,
+            "end_date": self.end_date.isoformat() if self.end_date else None,
+            "status": self.status,
+            "notified": self.notified
+        }
 
 class TopicMilestoneListField(EmbeddedDocument):
     topic = StringField(required=True)
@@ -67,7 +78,7 @@ class UserMilestone(Document):
             "one_month": [s.to_json() for s in self.one_month],
             "one_week": [s.to_json() for s in self.one_week],
             "one_day": [s.to_json() for s in self.one_day],
-            "tracked_items":self.tracked_items,
+            "tracked_items": [t.to_json() for t in self.tracked_items] if self.tracked_items else [],
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
