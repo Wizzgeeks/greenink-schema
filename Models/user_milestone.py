@@ -27,26 +27,52 @@ class TrackedMilestoneItem(EmbeddedDocument):
             "subtopic": self.subtopic,
             "start_date": self.start_date.isoformat() if self.start_date else None,
             "end_date": self.end_date.isoformat() if self.end_date else None,
-            "notified": self.notified
+            "notified": self.notified,
+            "status": self.status
+        }
+
+class SubtopicMilestoneListField(EmbeddedDocument):
+    subtopic = StringField(required=True)
+    start_date = DateTimeField()
+    end_date = DateTimeField()
+    notified = BooleanField(default=False)
+    status = StringField(choices=['active', 'expired', 'completed'], default='active')
+
+    def to_json(self):
+        return {
+            "subtopic": self.subtopic,
+            "start_date": self.start_date.isoformat() if self.start_date else None,
+            "end_date": self.end_date.isoformat() if self.end_date else None,
+            "notified": self.notified,
+            "status": self.status
         }
 
 class TopicMilestoneListField(EmbeddedDocument):
     topic = StringField(required=True)
-    subtopics = ListField(StringField())
+    subtopics = ListField(EmbeddedDocumentField(SubtopicMilestoneListField))
+    start_date = DateTimeField()
+    end_date = DateTimeField()
+    notified = BooleanField(default=False)
+    status = StringField(choices=['active', 'expired', 'completed'], default='active')
 
     def to_json(self):
         return {
             "topic": self.topic,
-            "subtopics": self.subtopics,
+            "subtopics": [s.to_json() for s in self.subtopics],
             "start_date": self.start_date.isoformat() if self.start_date else None,
             "end_date": self.end_date.isoformat() if self.end_date else None,
-            "notified": self.notified
+            "notified": self.notified,
+            "status": self.status
         }
 
 
 class SubjectMilestoneListField(EmbeddedDocument):
     subject = StringField(required=True)
     topics = ListField(EmbeddedDocumentField(TopicMilestoneListField))
+    start_date = DateTimeField()
+    end_date = DateTimeField()
+    notified = BooleanField(default=False)
+    status = StringField(choices=['active', 'expired', 'completed'], default='active')
 
     def to_json(self):
         return {
@@ -54,7 +80,8 @@ class SubjectMilestoneListField(EmbeddedDocument):
             "topics": [t.to_json() for t in self.topics],
             "start_date": self.start_date.isoformat() if self.start_date else None,
             "end_date": self.end_date.isoformat() if self.end_date else None,
-            "notified": self.notified
+            "notified": self.notified,
+            "status": self.status
         }
 
 
@@ -85,3 +112,4 @@ class UserMilestone(Document):
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
+
