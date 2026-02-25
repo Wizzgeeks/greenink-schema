@@ -27,7 +27,6 @@ class TrackedMilestoneItem(EmbeddedDocument):
             "subtopic": self.subtopic,
             "start_date": self.start_date.isoformat() if self.start_date else None,
             "end_date": self.end_date.isoformat() if self.end_date else None,
-            "status": self.status,
             "notified": self.notified
         }
 
@@ -38,7 +37,10 @@ class TopicMilestoneListField(EmbeddedDocument):
     def to_json(self):
         return {
             "topic": self.topic,
-            "subtopics": self.subtopics
+            "subtopics": self.subtopics,
+            "start_date": self.start_date.isoformat() if self.start_date else None,
+            "end_date": self.end_date.isoformat() if self.end_date else None,
+            "notified": self.notified
         }
 
 
@@ -49,7 +51,10 @@ class SubjectMilestoneListField(EmbeddedDocument):
     def to_json(self):
         return {
             "subject": self.subject,
-            "topics": [t.to_json() for t in self.topics]
+            "topics": [t.to_json() for t in self.topics],
+            "start_date": self.start_date.isoformat() if self.start_date else None,
+            "end_date": self.end_date.isoformat() if self.end_date else None,
+            "notified": self.notified
         }
 
 
@@ -60,7 +65,7 @@ class UserMilestone(Document):
     one_month = ListField(EmbeddedDocumentField(SubjectMilestoneListField))
     one_week = ListField(EmbeddedDocumentField(SubjectMilestoneListField))
     one_day = ListField(EmbeddedDocumentField(SubjectMilestoneListField))
-    tracked_items = ListField(EmbeddedDocumentField(TrackedMilestoneItem)) 
+    # tracked_items = ListField(EmbeddedDocumentField(TrackedMilestoneItem)) 
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
@@ -76,7 +81,7 @@ class UserMilestone(Document):
             "one_month": [s.to_json() for s in self.one_month],
             "one_week": [s.to_json() for s in self.one_week],
             "one_day": [s.to_json() for s in self.one_day],
-            "tracked_items": [t.to_json() for t in self.tracked_items] if self.tracked_items else [],
+            # "tracked_items": [t.to_json() for t in self.tracked_items] if self.tracked_items else [],
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }
