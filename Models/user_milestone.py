@@ -9,12 +9,10 @@ from Models.subtopic import Subtopic
 
 class TrackedMilestoneItem(EmbeddedDocument):
     milestone_type = StringField(choices=['one_day', 'one_week', 'one_month'], required=True)
-
     course = StringField(required=True)
     subject = StringField()
     topic = StringField()
     subtopic = StringField()
-
     start_date = DateTimeField(default=lambda: datetime.now(timezone.utc))
     end_date = DateTimeField(required=True)
     status = StringField(choices=['active', 'expired', 'completed'], default='active')
