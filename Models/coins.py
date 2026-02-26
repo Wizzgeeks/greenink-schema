@@ -10,6 +10,13 @@ class Coin_management(Document):
     login_coins = IntField(required=True)
     streak_coins = IntField(required=True)
     coin_value_per_unit = FloatField(required=True,precision=2, min_value=0.0)
+    materials_coins= IntField(required=True)
+    test_low_coins = IntField(required=False, default=0)
+    test_medium_coins = IntField(required=False, default=0)
+    test_high_coins = IntField(required=False, default=0)
+    quiz_low_coins = IntField(required=False, default=0)
+    quiz_medium_coins = IntField(required=False, default=0)
+    quiz_high_coins = IntField(required=False, default=0)
     created_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     created_by=StringField()
@@ -26,7 +33,14 @@ class Coin_management(Document):
             "login_coins": self.login_coins,
             "streak_coins": self.streak_coins,
             "coin_value_per_unit": self.coin_value_per_unit,
+            "test_low_coins": self.test_low_coins,
+            "test_medium_coins": self.test_medium_coins,
+            "test_high_coins": self.test_high_coins,
+            "quiz_low_coins": self.quiz_low_coins,
+            "quiz_medium_coins": self.quiz_medium_coins,
+            "quiz_high_coins": self.quiz_high_coins,
             # "total_coins": self.total_coins(),
+            "material_coins":self.materials_coins,
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat(),
             "created_by": self.created_by,
@@ -44,7 +58,14 @@ class Coin_management(Document):
             "login_coins": self.login_coins,
             "streak_coins": self.streak_coins,
             # "total_coins": self.total_coins(),
+            "material_coins":self.materials_coins,
             "coin_value_per_unit": self.coin_value_per_unit,
+            "test_low_coins": self.test_low_coins,
+            "test_medium_coins": self.test_medium_coins,
+            "test_high_coins": self.test_high_coins,
+            "quiz_low_coins": self.quiz_low_coins,
+            "quiz_medium_coins": self.quiz_medium_coins,
+            "quiz_high_coins": self.quiz_high_coins,
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat(),
             "created_by": self.created_by,

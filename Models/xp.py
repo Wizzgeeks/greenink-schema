@@ -9,6 +9,13 @@ class XP_management(Document):
     quiz_completion_xp = IntField(required=True)
     login_xp = IntField(required=True)
     streak_xp = IntField(required=True)
+    materials_xp= IntField(required=True)
+    test_low_xp = IntField(required=False, default=0)
+    test_medium_xp = IntField(required=False, default=0)
+    test_high_xp = IntField(required=False, default=0)
+    quiz_low_xp = IntField(required=False, default=0)
+    quiz_medium_xp = IntField(required=False, default=0)
+    quiz_high_xp = IntField(required=False, default=0)
     created_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     created_by=StringField()
@@ -23,6 +30,13 @@ class XP_management(Document):
             "test_completion_xp": self.test_completion_xp,
             "quiz_completion_xp": self.quiz_completion_xp,
             "login_xp": self.login_xp,
+            "material_xp":self.materials_xp,
+            "test_low_xp": self.test_low_xp,
+            "test_medium_xp": self.test_medium_xp,
+            "test_high_xp": self.test_high_xp,
+            "quiz_low_xp": self.quiz_low_xp,
+            "quiz_medium_xp": self.quiz_medium_xp,
+            "quiz_high_xp": self.quiz_high_xp,
             "streak_xp": self.streak_xp,
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat(),
@@ -40,6 +54,13 @@ class XP_management(Document):
             "quiz_completion_xp": self.quiz_completion_xp,
             "login_xp": self.login_xp,
             "streak_xp": self.streak_xp,
+            "material_xp":self.materials_xp,
+            "test_low_xp": self.test_low_xp,
+            "test_medium_xp": self.test_medium_xp,
+            "test_high_xp": self.test_high_xp,
+            "quiz_low_xp": self.quiz_low_xp,
+            "quiz_medium_xp": self.quiz_medium_xp,
+            "quiz_high_xp": self.quiz_high_xp,
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat(),
             "created_by": self.created_by,
