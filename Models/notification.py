@@ -34,9 +34,14 @@ class GlobalNotification(Document):
 
 
     def to_json(self):
+        sorted_messages = sorted(
+        self.message,
+        key=lambda x: x.publish_date if x.publish_date else x.created_at,
+        reverse=True  
+        )
         return {
             "id": str(self.id),
             "course": str(self.course.id) if self.course else None,
-            "message": [m.to_json() for m in self.message]
+            "message": [m.to_json() for m in sorted_messages]
         }
     
