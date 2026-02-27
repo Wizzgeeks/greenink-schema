@@ -10,12 +10,12 @@ class RewardEnableConfig(EmbeddedDocument):
     login = BooleanField(default=True)
     streak = BooleanField(default=True)
     materials = BooleanField(default=True)
-    test_low=BooleanField(default=True)
-    test_medium=BooleanField(default=True)
-    test_high=BooleanField(default=True)
-    quiz_low=BooleanField(default=True)
-    quiz_medium=BooleanField(default=True)
-    quiz_high=BooleanField(default=True)
+    # test_low=BooleanField(default=True)
+    # test_medium=BooleanField(default=True)
+    # test_high=BooleanField(default=True)
+    # quiz_low=BooleanField(default=True)
+    # quiz_medium=BooleanField(default=True)
+    # quiz_high=BooleanField(default=True)
 
 class XP_management(Document):
     course = ReferenceField(Course,required=True,reverse_delete_rule=CASCADE)
@@ -61,12 +61,12 @@ class XP_management(Document):
                 "page_completion": self.xp_enable_config.page_completion,
                 "test_completion": self.xp_enable_config.test_completion,
                 "quiz_completion": self.xp_enable_config.quiz_completion,
-                "test_low": self.xp_enable_config.test_low,
-                "test_medium": self.xp_enable_config.test_medium,
-                "test_high": self.xp_enable_config.test_high,
-                "quiz_low": self.xp_enable_config.quiz_low,
-                "quiz_medium": self.xp_enable_config.quiz_medium,
-                "quiz_high": self.xp_enable_config.quiz_high,
+                # "test_low": self.xp_enable_config.test_low,
+                # "test_medium": self.xp_enable_config.test_medium,
+                # "test_high": self.xp_enable_config.test_high,
+                # "quiz_low": self.xp_enable_config.quiz_low,
+                # "quiz_medium": self.xp_enable_config.quiz_medium,
+                # "quiz_high": self.xp_enable_config.quiz_high,
                 "login": self.xp_enable_config.login,
                 "streak": self.xp_enable_config.streak,
                 "materials": self.xp_enable_config.materials,

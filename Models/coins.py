@@ -9,12 +9,6 @@ class RewardEnableConfig(EmbeddedDocument):
     login = BooleanField(default=True)
     streak = BooleanField(default=True)
     materials = BooleanField(default=True)
-    test_low=BooleanField(default=True)
-    test_medium=BooleanField(default=True)
-    test_high=BooleanField(default=True)
-    quiz_low=BooleanField(default=True)
-    quiz_medium=BooleanField(default=True)
-    quiz_high=BooleanField(default=True)
 
 class Coin_management(Document):
     course = ReferenceField(Course,required=True,reverse_delete_rule=CASCADE)
@@ -61,12 +55,6 @@ class Coin_management(Document):
                 "page_completion": self.coins_enable_config.page_completion,
                 "test_completion": self.coins_enable_config.test_completion,
                 "quiz_completion": self.coins_enable_config.quiz_completion,
-                "test_low": self.coins_enable_config.test_low,
-                "test_medium": self.coins_enable_config.test_medium,
-                "test_high": self.coins_enable_config.test_high,
-                "quiz_low": self.coins_enable_config.quiz_low,
-                "quiz_medium": self.coins_enable_config.quiz_medium,
-                "quiz_high": self.coins_enable_config.quiz_high,
                 "login": self.coins_enable_config.login,
                 "streak": self.coins_enable_config.streak,
                 "materials": self.coins_enable_config.materials,
