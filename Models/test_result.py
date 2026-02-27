@@ -32,6 +32,9 @@ class TestResult(Document):
     total_questions=IntField()
     created_by=StringField()
     updated_by = StringField()
+    test_score_band= StringField()
+    test_score_coins= IntField()
+    test_score_xp= IntField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
 
