@@ -1,6 +1,20 @@
-from mongoengine import Document,ReferenceField,IntField,StringField,CASCADE,DateTimeField,FloatField
+from mongoengine import Document,ReferenceField,IntField,StringField,CASCADE,DateTimeField,FloatField,BooleanField,EmbeddedDocument,EmbeddedDocumentField
 from Models.course import Course
 from datetime import datetime,timezone
+
+class RewardEnableConfig(EmbeddedDocument):
+    page_completion = BooleanField(default=True)
+    test_completion = BooleanField(default=True)
+    quiz_completion = BooleanField(default=True)
+    login = BooleanField(default=True)
+    streak = BooleanField(default=True)
+    materials = BooleanField(default=True)
+    test_low=BooleanField(default=True)
+    test_medium=BooleanField(default=True)
+    test_high=BooleanField(default=True)
+    quiz_low=BooleanField(default=True)
+    quiz_medium=BooleanField(default=True)
+    quiz_high=BooleanField(default=True)
 
 class Coin_management(Document):
     course = ReferenceField(Course,required=True,reverse_delete_rule=CASCADE)
@@ -17,6 +31,10 @@ class Coin_management(Document):
     quiz_low_coins = IntField(required=False, default=0)
     quiz_medium_coins = IntField(required=False, default=0)
     quiz_high_coins = IntField(required=False, default=0)
+    coins_enable_config = EmbeddedDocumentField(
+        RewardEnableConfig,
+        default=RewardEnableConfig
+    )
     created_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at=DateTimeField(default=lambda: datetime.now(timezone.utc))
     created_by=StringField()
@@ -39,6 +57,20 @@ class Coin_management(Document):
             "quiz_low_coins": self.quiz_low_coins,
             "quiz_medium_coins": self.quiz_medium_coins,
             "quiz_high_coins": self.quiz_high_coins,
+            "coins_enable_config": {
+                "page_completion": self.coins_enable_config.page_completion,
+                "test_completion": self.coins_enable_config.test_completion,
+                "quiz_completion": self.coins_enable_config.quiz_completion,
+                "test_low": self.coins_enable_config.test_low,
+                "test_medium": self.coins_enable_config.test_medium,
+                "test_high": self.coins_enable_config.test_high,
+                "quiz_low": self.coins_enable_config.quiz_low,
+                "quiz_medium": self.coins_enable_config.quiz_medium,
+                "quiz_high": self.coins_enable_config.quiz_high,
+                "login": self.coins_enable_config.login,
+                "streak": self.coins_enable_config.streak,
+                "materials": self.coins_enable_config.materials,
+            },
             # "total_coins": self.total_coins(),
             "material_coins":self.materials_coins,
             "created_at": self.created_at.isoformat(),
