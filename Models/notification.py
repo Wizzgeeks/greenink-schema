@@ -23,7 +23,9 @@ class Notification(EmbeddedDocument):
             "message": self.message,
             "name":self.name,
             "notification_type": self.notification_type,
-            "created_at": self.created_at.isoformat()
+            "created_at": self.created_at.isoformat(),
+            "publish": self.publish,
+            "publish_date": self.publish_date.isoformat() if self.publish_date else None
         }
 
 
