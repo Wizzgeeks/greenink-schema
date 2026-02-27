@@ -8,7 +8,7 @@ class Notification(EmbeddedDocument):
     message = StringField(default="You have a new notification")
     name=StringField(default="")
     notification_type = StringField(
-        choices=("homework", "blog", "general","test","milestone"),
+        choices=("homework", "blog", "general","test","milestone","announcement"),
         default="general"
     )
     mark_as_read = BooleanField(default=False)
