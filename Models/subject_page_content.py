@@ -36,6 +36,8 @@ class SubjectPageContent(Document):
     tts_generated = BooleanField(default=False)
     tts_generated_at = DateTimeField()
 
+    context=ListField(DictField(),default=[])
+
     is_deleted=BooleanField(default=False)
     created_by=StringField()
     updated_by=StringField()
