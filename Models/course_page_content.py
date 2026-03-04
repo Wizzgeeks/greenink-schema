@@ -34,7 +34,8 @@ class CoursePageContent(Document):
     tts_generated_at = DateTimeField()
 
     context=ListField(DictField(),default=[])
-
+    full_text_context=StringField()
+    
     is_deleted=BooleanField(default=False)
     created_by=StringField()
     updated_by=StringField()

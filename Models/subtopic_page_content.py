@@ -43,6 +43,7 @@ class SubtopicPageContent(Document):
     tts_generated_at = DateTimeField()
 
     context=ListField(DictField(),default=[])
+    full_text_context=StringField()
 
 
 
