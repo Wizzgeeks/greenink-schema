@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 
 from Models.user_subscription import UserSubscription
 
-class Transaction(Document):
+class UserTransaction(Document):
     user = ReferenceField(Users, required=True)
     subscription = ReferenceField(Subscription)
     user_subscription = ReferenceField(UserSubscription)
