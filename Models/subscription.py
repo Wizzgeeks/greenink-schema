@@ -23,6 +23,7 @@ class Subscription(Document):
     price = FloatField(required=True)
     plan_duration=IntField(required=True)
     activate = BooleanField(default=True)
+    cashfree_subscription_id = StringField()
     premissions = ListField(EmbeddedDocumentField(Permission))
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))

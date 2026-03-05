@@ -1,4 +1,4 @@
-from mongoengine import Document,IntField,ReferenceField,DateTimeField,CASCADE
+from mongoengine import Document,IntField,ReferenceField,DateTimeField,CASCADE, StringField
 # from Models.coupon_model import Coupon
 from Models.subscription import Subscription
 from Models.user import Users
@@ -11,6 +11,11 @@ class User_subscription(Document):
     # coupon = ReferenceField(Coupon,reverse_delete_rule=CASCADE)
     coins_redeemed=IntField()
     expiry = DateTimeField(required=True)
+    cashfree_subscription_id = StringField()
+    status = StringField(default="INITIATED")
+    start_date = DateTimeField()
+    next_charge_date = DateTimeField()
+
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     
