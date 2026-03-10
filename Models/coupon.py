@@ -42,9 +42,10 @@ class Coupon(Document):
             "expires":self.expires,
             "code":self.code,
             "max_usage":self.max_usage if self.max_usage else None,
-            "current_usage":self.current_usage if self.current_usage else None,
+            "current_usage":self.current_usage if self.current_usage else 0,
             "created_at": self.created_at if self.created_at else None,
             "updated_at": self.updated_at if self.updated_at else None,
+            "activate": self.activate,
         }
     
     def with_key(self):
@@ -61,6 +62,7 @@ class Coupon(Document):
             "current_usage":self.current_usage if self.current_usage else None,
             "created_at": self.created_at.strftime('%d/%m/%Y') if self.created_at else None,
             "updated_at": self.updated_at.strftime('%d/%m/%Y') if self.updated_at else None,
+            "activate": self.activate,
         }
         
     def update(self, **kwargs):
