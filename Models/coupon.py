@@ -22,13 +22,7 @@ class Coupon(Document):
 
     
 
-    def clean(self):
-        if not self.name.strip():
-            raise ValidationError("Coupon name cannot be empty")
-        if self.expires <= datetime.now(timezone.utc):
-            raise ValidationError("Expiry must be future date")
-        if self.max_usage <= self.current_usage:
-            raise ValidationError("Max usage must be greater than current usage")
+    
         
 
     def to_json(self):
