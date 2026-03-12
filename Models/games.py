@@ -15,6 +15,7 @@ class Game(Document):
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     title=StringField()
     key=StringField()
+    level=StringField(choices=["easy", "medium", "hard"])
 
     def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
@@ -26,6 +27,7 @@ class Game(Document):
             "name": self.name,
             "content": self.content,
             "game_type": self.game_type,
+            "level": self.level,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
@@ -34,6 +36,7 @@ class Game(Document):
             "id": str(self.id),
             "name": self.name,
             "game_type": self.game_type,
+            "level": self.level,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
