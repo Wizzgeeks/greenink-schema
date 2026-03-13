@@ -6,11 +6,13 @@ from mongoengine import Document, EmbeddedDocument, EmbeddedDocumentListField, S
 class Topic(EmbeddedDocument):
     name = StringField(required=True)
     active = BooleanField(default=True)
+    key=StringField(required=True)
 
     def to_json(self):
         return {
             "name": self.name,
-            "active": self.active
+            "active": self.active,
+            "key": self.key
         }
 
 
