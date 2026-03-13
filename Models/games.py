@@ -7,10 +7,10 @@ from Models.course import Course
 
 
 class Game(Document):
-    course= ReferenceField(Course, reverse_delete_rule=CASCADE, required=True)
+    course= ReferenceField(Course, reverse_delete_rule=CASCADE)
     name = StringField(required=True)
     content = ListField(DictField(), default=[])
-    game_type = StringField(choices=["knowledge_test", "speed_test", "aptitude_test"], required=True)
+    game_type = StringField(choices=["knowledge_test", "speed_test", "aptitude_test","knowledge_speed_test"], required=True)
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     title=StringField()
