@@ -1,9 +1,12 @@
 from mongoengine import *
 from datetime import datetime, timezone
+from Models.course import Course
+
 
 
 class Videos(Document):
     title = StringField(required=True)
+    course=ReferenceField(Course, required= True,reverse_delete_rule=CASCADE)
     description = StringField()
     source_type = StringField(
         choices=["s3", "youtube", "public_url"],
@@ -41,6 +44,7 @@ class Videos(Document):
             "id": str(self.id),
             "title": self.title,
             "description": self.description,
+            "course":self.course,
             "source_type": self.source_type,
             "video_url": self.video_url,
             "mime_type": self.mime_type,
