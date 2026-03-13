@@ -38,7 +38,7 @@ class Subscription(Document):
             "price":self.price,
             "plan_duration":self.plan_duration,
             "activate":self.activate,
-            "premissions":[p.to_json() for p in self.premissions] if self.premissions else []
+            "premissions":self.premissions if self.premissions else []
         }
     
     def with_key(self):
@@ -51,7 +51,7 @@ class Subscription(Document):
             "price":self.price,
             "plan_duration":self.plan_duration,
             "activate":self.activate,
-            "premissions":[p.to_json() for p in self.premissions] if self.premissions else []
+            "premissions":self.premissions if self.premissions else []
         }
     def admin_json(self):
         return {
@@ -63,7 +63,7 @@ class Subscription(Document):
             "price":self.price,
             "plan_duration":self.plan_duration,
             "activate":self.activate,
-            "premissions":[p.to_json() for p in self.premissions] if self.premissions else []
+            "premissions":self.premissions if self.premissions else []
         }   
     
     
