@@ -35,6 +35,10 @@ class Users(Document):
     subscription_expires_at = DateTimeField(null=True)
     is_subscription_active = BooleanField(default=False)
     subscription_id = StringField(null=True)
+    reset_token=StringField()
+    reset_token_expiration=DateTimeField()
+    change_password_token=StringField()
+    change_password_token_expiration=DateTimeField()
 
 
 
