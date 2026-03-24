@@ -17,6 +17,7 @@ class Users(Document):
     ai_teaching_preference=StringField(choices=['easy','medium',"hard"],default='easy')
     auth_token=StringField()
     preference=ListField(DictField())
+    mobile=StringField()
     # grade=StringField()
     disabled=BooleanField(default=False)
     is_deleted=BooleanField(default=False)
@@ -58,6 +59,7 @@ class Users(Document):
             "name": self.name,
             "email": self.email if self.email else "",
             "register_no": self.register_no if self.register_no else "",
+            "mobile": self.mobile if self.mobile else "",
             "disabled": self.disabled if self.disabled else False,
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,

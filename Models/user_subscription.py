@@ -22,7 +22,7 @@ class UserSubscription(Document):
     subscription = ReferenceField(Subscription, reverse_delete_rule=CASCADE, required=True)
 
     start_date = DateTimeField()
-    expiry = DateTimeField(required=True)
+    expiry = DateTimeField(required=False)
     subscription_status = StringField(
         default="ACTIVE",
         choices=["ACTIVE", "EXPIRED", "CANCELLED", "UPCOMING"]
