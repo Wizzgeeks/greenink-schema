@@ -30,6 +30,7 @@ class UserSubscription(Document):
     next_charge_date = DateTimeField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
+    cashfree_subscription_id=StringField()
     
 
     def to_json(self):
