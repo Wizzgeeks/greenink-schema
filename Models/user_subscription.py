@@ -1,4 +1,4 @@
-from mongoengine import Document,IntField,ReferenceField,DateTimeField,CASCADE, StringField,DictField
+from mongoengine import Document,IntField,ReferenceField,DateTimeField,CASCADE, StringField,DictField,BooleanField
 # from Models.coupon_model import Coupon
 from Models.subscription import Subscription
 from Models.user import Users
@@ -31,6 +31,7 @@ class UserSubscription(Document):
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     cashfree_subscription_id=StringField()
+    autopay_enabled = BooleanField(default=False)
     
 
     def to_json(self):
@@ -43,5 +44,6 @@ class UserSubscription(Document):
             "subscription_status": self.subscription_status,
             "next_charge_date": self.next_charge_date.isoformat() if self.next_charge_date else None,
             "created_at": self.created_at.isoformat() if self.created_at else None,
-            "updated_at": self.updated_at.isoformat() if self.updated_at else None
+            "updated_at": self.updated_at.isoformat() if self.updated_at else None,
+            'autopay_enabled': self.autopay_enabled,
         }
