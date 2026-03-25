@@ -25,6 +25,7 @@ class UserTransaction(Document):
     order_id = StringField()
     cf_order_id = StringField()
     payment_session_id = StringField()
+    payment_link= StringField()
     order_details = DictField()
 
 
@@ -74,6 +75,7 @@ class UserTransaction(Document):
             "payment_method": self.payment_method,
             "payment_time": self.payment_time.isoformat() if self.payment_time else None,
             "gateway_response": self.gateway_response,
+            "payment_link": self.payment_link,
             "created_at": self.created_at.isoformat() if self.created_at else None,
             "updated_at": self.updated_at.isoformat() if self.updated_at else None,
         }
