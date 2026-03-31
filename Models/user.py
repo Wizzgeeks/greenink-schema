@@ -85,6 +85,8 @@ class Users(Document):
             "preference":self.preference if self.preference else [],  
             "test_page_preference":self.test_page_preference if self.test_page_preference else "easy",
             "ai_teaching_preference":self.ai_teaching_preference if self.ai_teaching_preference else "easy",
+             "mobile": self.mobile if self.mobile else "",
+            "mobile_country_code": self.mobile_country_code if self.mobile_country_code else "",
                      
         }
     def to_admin(self):
