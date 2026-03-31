@@ -18,6 +18,7 @@ class Users(Document):
     auth_token=StringField()
     preference=ListField(DictField())
     mobile=StringField()
+    mobile_country_code=StringField()
     # grade=StringField()
     disabled=BooleanField(default=False)
     is_deleted=BooleanField(default=False)
@@ -60,6 +61,7 @@ class Users(Document):
             "email": self.email if self.email else "",
             "register_no": self.register_no if self.register_no else "",
             "mobile": self.mobile if self.mobile else "",
+            "mobile_country_code": self.mobile_country_code if self.mobile_country_code else "",
             "disabled": self.disabled if self.disabled else False,
             "is_deleted": self.is_deleted,
             "created_at": self.created_at,
