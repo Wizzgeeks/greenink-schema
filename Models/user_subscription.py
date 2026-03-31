@@ -25,7 +25,7 @@ class UserSubscription(Document):
     expiry = DateTimeField(required=False)
     subscription_status = StringField(
         default="ACTIVE",
-        choices=["ACTIVE", "EXPIRED", "CANCELLED", "UPCOMING"]
+        choices=["ACTIVE", "EXPIRED", "CANCELLED", "UPCOMING","FAILED"]
     )
     next_charge_date = DateTimeField()
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
