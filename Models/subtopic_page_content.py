@@ -157,3 +157,29 @@ class SubtopicPageContent(Document):
             "application":self.application if self.application else 0
             
         }
+    def to_json_difficulty_admin(self, difficulty_level):
+        content_map = {
+            "easy": self.content or [],
+            "medium": self.medium_content or [],
+            "hard": self.hard_content or [],
+        }
+
+        return {
+            "id": str(self.id),
+            "course": str(self.course.to_json()) if self.course else None,
+            "question_bank": str(self.question_bank.to_json()) if self.question_bank else None,
+            "sequence": self.sequence,
+            "name": self.name,
+            "page_type": self.page_type,
+            "content": content_map.get(difficulty_level, []),  # default empty
+            "difficulty_level": difficulty_level,
+            "is_deleted": self.is_deleted,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            "duration": self.duration,
+            "pass_percentage": self.pass_percentage,
+            "direct": self.direct or 0,
+            "reasoning": self.reasoning or 0,
+            "critical_thinking": self.critical_thinking or 0,
+            "application": self.application or 0
+        }
