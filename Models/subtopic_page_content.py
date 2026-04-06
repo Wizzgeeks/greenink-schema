@@ -166,7 +166,7 @@ class SubtopicPageContent(Document):
 
         return {
             "id": str(self.id),
-            "course": str(self.course.to_json()) if self.course else None,
+            "course": self.course.to_json() if self.course else None,
             "question_bank": str(self.question_bank.to_json()) if self.question_bank else None,
             "sequence": self.sequence,
             "name": self.name,
