@@ -27,6 +27,7 @@ class Subscription(Document):
     premissions = ListField(DictField(), default=[])
     created_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
     updated_at = DateTimeField(default=lambda: datetime.now(timezone.utc))
+    is_deleted = BooleanField(default=False)
 
     def to_json(self):
         return {
