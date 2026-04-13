@@ -163,8 +163,4 @@ class CoursePageContent(Document):
             "hierarcy_level": self.hierarcy_level,
             "duration":self.duration,
             "pass_percentage":self.pass_percentage,
-            "direct":self.direct if self.direct else 0, 
-            "reasoning":self.reasoning if self.reasoning else 0,
-            "critical_thinking":self.critical_thinking if self.critical_thinking else 0,
-            "application":self.application if self.application else 0
         }
