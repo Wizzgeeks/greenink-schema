@@ -36,6 +36,9 @@ class SubtopicPageContent(Document):
     reasoning=IntField(default=0)
     critical_thinking=IntField(default=0)
     application=IntField(default=0)
+    content_count = IntField(default=0)
+    medium_content_count = IntField(default=0)
+    hard_content_count = IntField(default=0)
 
     tts_s3_url = StringField()
     tts_mime = StringField(default="audio/wav")
@@ -147,36 +150,28 @@ class SubtopicPageContent(Document):
             "name": self.name,
             "page_type": self.page_type,
             "sequence": self.sequence,
-            "child_pages": [
-                cp.to_minimal_json(difficulty_level=difficulty_level)
-                for cp in self.child_pages
-            ] if self.child_pages else [],
+            "child_pages": [cp.to_minimal_json() for cp in self.child_pages] if self.child_pages else [],
             "hierarcy_level": self.hierarcy_level,
             "duration": self.duration,
             "pass_percentage": self.pass_percentage,
-            "direct": self.direct or 0,
-            "reasoning": self.reasoning or 0,
-            "critical_thinking": self.critical_thinking or 0,
-            "application": self.application or 0
         }
 
         if self.page_type == "test" :
             if difficulty_level:
-                difficulty_map = {
-                    "easy": self.content or [],
-                    "medium": self.medium_content or self.content or [],
-                    "hard": self.hard_content or self.content or []
-                }
-
-                questions = difficulty_map.get(difficulty_level.lower(), [])
+                if difficulty_level.lower() == 'easy':
+                    questions = self.content_count if self.content_count else 0
+                elif difficulty_level.lower() == 'medium':
+                    questions = self.medium_content_count if self.medium_content_count else 0
+                elif difficulty_level.lower() == 'hard':
+                    questions = self.hard_content_count if self.hard_content_count else 0
+                else:
+                    questions = 0
             else:
-                questions = self.content or []
-            data["question_count"] = len(questions)
-            data["difficulty_level"] = difficulty_level.lower()
+                questions = self.content_count  if self.content_count else 0
+            data["question_count"] = questions
         if self.page_type in ["active_recall_test"]:
             questions = self.content or []
-            data["question_count"] = len(questions)
-            data["difficulty_level"] = difficulty_level.lower()
+            data["question_count"] = self.content_count if self.content_count else 0
 
         return data
     def to_json_difficulty_admin(self, difficulty_level):
