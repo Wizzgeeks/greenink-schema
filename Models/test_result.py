@@ -44,24 +44,14 @@ class TestResult(Document):
     def to_json(self):
         return {
             "id": str(self.id),
-            "course": str(self.course.id) if self.course else None,
-            "subject": str(self.subject.id) if self.subject else None,
-            "topic": str(self.topic.id) if self.topic else None,
-            "subtopic": str(self.subtopic.id) if self.subtopic else None,
-            "course_page_test": str(self.course_page_test.id) if self.course_page_test else None,
-            "subject_page_test": str(self.subject_page_test.id) if self.subject_page_test else None,
-            "topic_page_test": str(self.topic_page_test.id) if self.topic_page_test else None,
-            "subtopic_page_test": str(self.subtopic_page_test.id) if self.subtopic_page_test else None,
-            "user": str(self.user.id) if self.user else None,
             "attempt_data": self.attempt_data,
             "completed": self.completed,
             "no_of_questions_attempted": self.no_of_questions_attempted,
             "no_of_question_correct": self.no_of_question_correct,
             "total_questions": self.total_questions,
-            "created_at": self.created_at,
-            "updated_at": self.updated_at,
             "feedback": self.feedback,
         }
+
 
 
 
