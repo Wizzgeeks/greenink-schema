@@ -5,7 +5,13 @@ from Models.course import Course
 class Blog(Document):
     course=ReferenceField(Course,required=True,reverse_delete_rule=CASCADE)
     title=StringField()
+    blog_type=StringField(choices=['text','video','audio'],default='text')
     image_url=StringField()
+    content_url = StringField()
+    source_type = StringField(
+        choices=["upload", "youtube", "public_url"],
+        required=True
+    )
     blog_description=StringField()
     description=StringField()
     publish=BooleanField(default=False)
@@ -25,7 +31,10 @@ class Blog(Document):
             'description':self.description,
             "publish":self.publish,
             "created_at": self.created_at,
-            "updated_at": self.updated_at
+            "updated_at": self.updated_at,
+            "blog_type": self.blog_type,
+            "content_url": self.content_url,
+            "source_type": self.source_type
         }
     
     
@@ -37,5 +46,6 @@ class Blog(Document):
             "blog_description":self.blog_description,
             "publish":self.publish,
             "created_at": self.created_at,
-            "updated_at": self.updated_at
+            "updated_at": self.updated_at,
+            "blog_type": self.blog_type,
         }
