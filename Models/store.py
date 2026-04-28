@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 class Store(Document):
     course = ReferenceField(Course, reverse_delete_rule=CASCADE, required=True)
 
-    item_name = StringField(required=True)  
+    name = StringField(required=True)  
     
 
     store_tier = StringField(required=True)
@@ -38,7 +38,7 @@ class Store(Document):
         return {
             "id": str(self.id),
             "course": str(self.course.id) if self.course else None,
-            "item_name": self.item_name,
+            "name": self.name,
             "store_tier": self.store_tier,
             "price": self.price,
             "days_count": self.days_count,
@@ -50,7 +50,7 @@ class Store(Document):
         return {
             "id": str(self.id),
             "course": self.course.to_json() if self.course else None,
-            "item_name": self.item_name,
+            "name": self.name,
             "store_tier": self.store_tier,
             "price": self.price,
             "days_count": self.days_count,
