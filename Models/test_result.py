@@ -1,4 +1,4 @@
-from mongoengine import Document, StringField, IntField, ListField,ReferenceField,DateTimeField,BooleanField,CASCADE,DictField
+from mongoengine import Document, FloatField, StringField, IntField, ListField,ReferenceField,DateTimeField,BooleanField,CASCADE,DictField
 from datetime import datetime, timezone
 from Models.course_page_content import CoursePageContent
 from Models.subject_page_content import SubjectPageContent
@@ -28,6 +28,7 @@ class TestResult(Document):
     completed=BooleanField()
     no_of_questions_attempted=IntField()
     no_of_question_correct=IntField()
+    score=FloatField()
     feedback=ListField(DictField(),default=[])
     total_questions=IntField()
     created_by=StringField()
@@ -50,6 +51,7 @@ class TestResult(Document):
             "no_of_question_correct": self.no_of_question_correct,
             "total_questions": self.total_questions,
             "feedback": self.feedback,
+                "score": self.score,
         }
 
 
